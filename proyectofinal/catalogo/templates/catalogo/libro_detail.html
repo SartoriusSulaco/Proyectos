@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Titulo: {{ libro.titulo }}</h1>
+
+  <p><strong>ISBN:</strong> {{ libro.isbn }}</p>  
+  <p><strong>Autor:</strong> <a href="{% url 'autor-detalle' libro.autor.pk %}">{{ libro.autor }}</a></p>
+  <p><strong>Editorial:</strong> {{ libro.editorial }}</p>  
+  <p><strong>Edicion:</strong> {{ libro.edicion }}</p>
+  <p><strong>Lugar:</strong> {{ libro.lugar }}</p>    
+  <p><strong>Cubierta:</strong> {{ libro.get_cubierta_display }}</p> 
+  <p><strong>Paginas:</strong> {{ libro.paginas }}</p> 
+  <p><strong>Estanteria:</strong> {{ libro.get_estanteria_display }}</p>  
+  <p><strong>Comentario:</strong> {{ libro.comentario }}</p>
+
+
+  {% if user.is_staff %}
+  <li>
+        <a href="{{ libro.get_absolute_url }}/actualizar "> Modificar Libro </a>
+  </li>
+  {% endif %}
+
+
+  <div style="margin-left:20px;margin-top:40px">
+    <h4>En existencia</h4>
+
+    {% for copy in libro.libroexistente_set.all %}
+      <hr>
+      <p class="{% if copy.estado == 'd' %}text-success{% elif copy.estado == 'p' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_estado_display }}</p>
+      {% if copy.estado != 'd' %}
+        <p><strong>Fecha de retorno:</strong> {{copy.retorno}}</p>
+      {% endif %}
+      <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

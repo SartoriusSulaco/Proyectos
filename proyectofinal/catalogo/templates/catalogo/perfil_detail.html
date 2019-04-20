@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Usuario: {{ perfil.usuario }}</h1>
+
+  <p><strong>Nombre:</strong> {{ perfil.nombre }}</p>  
+  <p><strong>Correo:</strong> {{ perfil.correo }}</p>  
+  <p><strong>Edad:</strong> {{ perfil.edad }}</p>
+  <p><strong>Edad:</strong> {{ perfil.id }}</p>
+  
+
+ <li>
+        <a href="{{ perfil.get_absolute_url }}/actualizar "> Modificar Perfil </a>
+  </li>
+
+{% endblock %}

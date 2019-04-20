@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Libros</h1>
+  {% if user.is_staff %}
+  <li><a href="{% url 'libros' %}crear">Agregar un Libro</a></li>
+  {% endif %}
+  {% if libro_list %}
+  <ul>
+    {% for libro in libro_list %}
+      <li>
+        <a href="{{ libro.get_absolute_url }}">{{ libro.titulo }}</a> ({{libro.autor}})
+      </li>
+      <dt>-</dt>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No existen libros en la biblioteca<p>
+  {% endif %}       
+{% endblock %}

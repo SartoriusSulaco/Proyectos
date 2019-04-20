@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Autor: {{ autor }} </h1>
+{% if user.is_staff %}
+<li>
+        <a href="{{ autor.get_absolute_url }}/actualizar "> Modificar Autor </a>
+  </li>
+  {% endif %}
+
+<div style="margin-left:20px;margin-top:20px">
+<h4>Libros</h4>
+
+<dl>
+{% for libro in autor.libro_set.all %}
+  <dt><a href="{% url 'libro-detalle' libro.pk %}">{{libro}}</a> ({{libro.libroexistente_set.all.count}})</dt>
+  <dt>- </dt>
+{% endfor %}
+</dl>
+
+</div>
+{% endblock %}

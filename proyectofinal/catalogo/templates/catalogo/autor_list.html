@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Autores </h1>
+    {% if user.is_staff %}
+    <li><a href="{% url 'autores' %}crear">Agregar un Autor</a></li>
+    {% endif %}
+  {% if autor_list %}
+  <ul>
+    {% for autor in autor_list %}
+      <li>
+        <a href="{{ autor.get_absolute_url }}">{{ autor.nombre }}</a> ,{{autor.apellido}}
+      </li>
+      <dt>-</dt>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No existen autores en la biblioteca</p>
+  {% endif %}       
+{% endblock %}

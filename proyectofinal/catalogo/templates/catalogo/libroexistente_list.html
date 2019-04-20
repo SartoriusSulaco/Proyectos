@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Prestamos por Usuario</h1>
+
+    {% if libroexistente_list %}
+    <ul>
+
+      {% for libroexis in libroexistente_list %} 
+      <li class="{% if libroexis.atrasado %}text-danger{% endif %}">
+        <a href="{% url 'libro-detalle' libroexis.libro.pk %}">{{libroexis.libro.titulo}}</a> ({{ libroexis.retorno }}) {% if user.is_staff %}- {{ libroexis.prestador }}{% endif %} 
+        <a>Renovar</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>No hay libros prestados</p>
+    {% endif %}       
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Usuario</h1>
+  {% if perfil_list %}
+  <ul>
+    {% for perfil in perfil_list %}
+      <li>
+        <a href="{{ perfil.get_absolute_url }}">{{ perfil.usuario }}</a> ({{perfil.nombre}})
+      </li>
+      <dt>-</dt>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No existen usuarios en la biblioteca<p>
+  {% endif %}       
+{% endblock %}

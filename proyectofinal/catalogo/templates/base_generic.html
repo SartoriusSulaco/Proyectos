@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+  {% block title %}<title>Proyecto</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+      {% block sidebar %}
+        <ul class="sidenav">
+          {% if user.is_authenticated %}
+            <li>   Usuario: {{ user.get_username }}</li>
+            <li><a href="{% url 'mis-prestamos' %}">Mis prestamos</a></li>
+            <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesion</a></li>  
+            <li><a href="{% url 'perfiles' %}">Usuarios</a></li>
+          {% else %}
+            <li><a href="{% url 'login'%}?next={{request.path}}">Iniciar sesion</a></li>   
+          {% endif %} 
+          {% if user.is_staff %}
+          <li><a href="{% url 'prestamos'%}">Prestamos por usuario</a></li>
+          {% endif%}
+          <li><a href="{% url 'inicio' %}">Inicio</a></li>
+          <li><a href="{% url 'libros' %}">Libros</a></li>
+          <li><a href="{% url 'autores' %}">Autores</a></li>
+        </ul>
+     {% endblock %}
+     <style type="text/css" media="screen">
+
+.col-sm-2 {
+  height: 100%; 
+  width: 200px; 
+  position: fixed;
+  z-index: 1;
+  top: 0; 
+  right: 0;
+  background-color: #556B2F; 
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+
+.col-sm-2 a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #b1b1b1;
+  display: block;
+}
+
+.col-sm-2 a:hover {
+  color: #f1f1f1;
+}
+
+
+.contenido {
+  margin-left: 10px; 
+  padding: 0px 0px;
+  background-color:f1f1c1;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} 
+
+
+</style>
+      </div>
+      <div class="contenido">
+      {% block content %}{% endblock %}
+          {% block pagination %}
+            {% if is_paginated %}
+              <div class="pagination">
+                <span class="page-links">
+                  {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">anterior</a>
+                {% endif %}
+                <span class="page-current">
+                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">siguiente</a>
+                {% endif %}
+              </span>
+            </div>
+          {% endif %}
+        {% endblock %} 
+      </div>
+    </div>
+  </div>
+</body>
+</html>

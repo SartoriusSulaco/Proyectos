@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Biblioteca</h1>
+
+
+  <p>La biblioteca cuenta en sus archivos lo siguiente:</p>
+  <ul>
+    <li><strong>Libros:</strong> {{ cantidad_de_libros }}</li>
+    <li><strong>Existencias disponibles:</strong> {{ cantidad_de_existencias_disponibles }}</li>
+    <li><strong>Autores:</strong> {{ cantidad_autores }}</li>
+  </ul>
+{% endblock %}
