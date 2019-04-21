@@ -123,7 +123,8 @@ class Perfil(models.Model): #Este modelo agranda el auth de django agregandole m
 
     class Meta:  #Todavia es WIP, django no actualiza los permisos
         ordering = ['usuario']
-        permissions = (("es_administrador", "usuario_comun"),) 
+        permissions = (("crear_usuarios","Puede crear Usuarios"),
+                        ) 
 
     def get_absolute_url(self): #Sirve para redireccionar el URL
         return reverse('perfil-detalle', args=[str(self.id)])

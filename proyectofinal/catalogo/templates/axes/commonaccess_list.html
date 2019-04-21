@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Accesos </h1>
+  {% if commonaccess_list %}
+  <ul>
+    {% for commonaccess in commonaccess_list %}
+      <li>
+        {{ commonaccess.username }},{{commonaccess.failures_since_start}}
+      </li>
+      <dt>-</dt>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No existen autores en la biblioteca</p>
+  {% endif %}       
+{% endblock %}

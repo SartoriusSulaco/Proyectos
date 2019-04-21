@@ -3,9 +3,12 @@
 {% block content %}
 
 <h1>Autor: {{ autor }} </h1>
-{% if user.is_staff %}
-<li>
+{% if perms.catalogo.crear_usuarios %}
+  <li>
         <a href="{{ autor.get_absolute_url }}/actualizar "> Modificar Autor </a>
+  </li>
+  <li>
+        <a href="{{ autor.get_absolute_url }}/eliminar "> Eliminar Autor </a>
   </li>
   {% endif %}
 

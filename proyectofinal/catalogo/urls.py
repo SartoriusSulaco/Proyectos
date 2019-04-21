@@ -8,7 +8,7 @@ urlpatterns = [
     path('autores/', views.ListadoAutores.as_view(), name='autores'),
     path('autores/<int:pk>', views.DetalleAutores.as_view(), name='autor-detalle'),
     path('perfiles/', views.ListadoPerfiles.as_view(), name='perfiles'),
-    path('perfiles/<int:pk>', views.DetallePerfiles.as_view(), name='perfil-detalle'),  #Estos url solo son para observar los datos de la biblioteca, los perfiles solo los pueden ver los
+    path('perfiles/<int:pk>', views.DetallePerfiles.as_view(), name='perfil-detalle'), #Estos url solo son para observar los datos de la biblioteca, los perfiles solo los pueden ver los
                                                                                         #administradores
 ]
 
@@ -30,5 +30,7 @@ urlpatterns += [
     path('libros/<int:pk>/eliminar/', views.LibroEliminar.as_view(), name='libro_eliminar'),
     path('perfiles/crear/', views.PerfilCrear.as_view(), name='perfiles_crear'),
     path('perfiles/<int:pk>/actualizar/', views.PerfilActualizar.as_view(), name='perfiles_actualizar'),
+    path('perfiles/<int:pk>/eliminar/', views.PerfilEliminar.as_view(), name='perfiles_eliminar'),
     path('usuario/crear/', views.UsuarioCrear.as_view(), name='usuario_crear'),
+    path(r'registrar/', views.UsuarioC, name='registrar'),
 ]

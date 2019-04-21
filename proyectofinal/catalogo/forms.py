@@ -4,6 +4,9 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from catalogo.models import Perfil
+from django.contrib.auth.models import User
+from django.forms import ModelForm
+
 
 class RenovaciondeLibro(forms.Form):   #Es un formulacion para la renovacion de los libros, todavia es WIP
     fecharenovacion = forms.DateField(help_text="Ingrese una fecha")
@@ -17,8 +20,3 @@ class RenovaciondeLibro(forms.Form):   #Es un formulacion para la renovacion de 
             raise ValidationError(_('Fecha invalida, es mas de un mes'))
         return data
 
-
-class PerfilForm(forms.ModelForm):  #Tambien es WIP, un formulario para crear perfiles
-    class Meta:
-        model = Perfil
-        fields = '__all__'

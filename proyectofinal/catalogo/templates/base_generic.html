@@ -11,16 +11,30 @@
       {% block sidebar %}
         <ul class="sidenav">
           {% if user.is_authenticated %}
-            <li>   Usuario: {{ user.get_username }}</li>
+            <dt><strong>      Usuario: {{ user.get_username }}</strong></dt>
             <li><a href="{% url 'mis-prestamos' %}">Mis prestamos</a></li>
             <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesion</a></li>  
-            <li><a href="{% url 'perfiles' %}">Usuarios</a></li>
+            <dt>-</dt>
           {% else %}
-            <li><a href="{% url 'login'%}?next={{request.path}}">Iniciar sesion</a></li>   
+            <li><a href="{% url 'login'%}?next={{request.path}}">Iniciar sesion</a></li>   admin/axes/accesslog/
+            <dt>-</dt>
           {% endif %} 
-          {% if user.is_staff %}
-          <li><a href="{% url 'prestamos'%}">Prestamos por usuario</a></li>
+          
+          {% if user.is_superuser %}
+          <dt><strong>   Acciones de Superusuario:</strong> </dt>
+          <li><a href="/admin/auth/user/add/ "> Crear Administrador </a></li>
+          <li><a href="/admin/axes/accesslog/ "> Bitacora de Ingresos </a></li>
+          <li><a href="/admin/axes/accessattempt/ "> Usuarios Bloqueados </a></li>
+          <dt>-</dt>
           {% endif%}
+          {% if perms.catalogo.crear_usuarios %}
+          <dt><strong>   Acciones de Administrador:</strong> </dt>
+          <li><a href="{% url 'registrar' %}">Crear Usuario</a></li>
+          <li><a href="{% url 'perfiles' %}">Usuarios</a></li>
+          <li><a href="{% url 'prestamos'%}">Prestamos por usuario</a></li>
+          <dt>-</dt>
+          {% endif%}
+          
           <li><a href="{% url 'inicio' %}">Inicio</a></li>
           <li><a href="{% url 'libros' %}">Libros</a></li>
           <li><a href="{% url 'autores' %}">Autores</a></li>
@@ -30,7 +44,7 @@
 
 .col-sm-2 {
   height: 100%; 
-  width: 200px; 
+  width: 300px; 
   position: fixed;
   z-index: 1;
   top: 0; 

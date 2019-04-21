@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Accesos </h1>
+  {% if accessattempt_list %}
+  <ul>
+    {% for accessattempt in accessattempt_list %}
+      <li>
+        <a href="{{ accesattempt.get_absolute_url }}">{{ accesattempt.username }}</a>
+      </li>
+      <dt>-</dt>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>No existen autores en la biblioteca</p>
+  {% endif %}       
+{% endblock %}

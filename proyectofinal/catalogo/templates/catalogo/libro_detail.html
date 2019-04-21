@@ -14,9 +14,12 @@
   <p><strong>Comentario:</strong> {{ libro.comentario }}</p>
 
 
-  {% if user.is_staff %}
+  {% if perms.catalogo.crear_usuarios %}
   <li>
         <a href="{{ libro.get_absolute_url }}/actualizar "> Modificar Libro </a>
+  </li>
+  <li>
+        <a href="{{ libro.get_absolute_url }}/eliminar "> Eliminar Libro </a>
   </li>
   {% endif %}
 

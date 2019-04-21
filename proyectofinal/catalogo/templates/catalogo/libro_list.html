@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Libros</h1>
-  {% if user.is_staff %}
+  {% if perms.catalogo.crear_usuarios %}
   <li><a href="{% url 'libros' %}crear">Agregar un Libro</a></li>
   {% endif %}
   {% if libro_list %}
